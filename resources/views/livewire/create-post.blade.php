@@ -28,9 +28,20 @@
                 Cancelar
             </x-jet-secondary-button>
 
-            <x-jet-danger-button wire:click="save">
+            {{-- To delete this button when the process is loading --}}
+            {{-- <x-jet-danger-button wire:click="save" wire:loading.remove wire:target="save">
+                Crear post
+            </x-jet-danger-button> --}}
+
+            {{-- wire:loading.class, wire:loading.attr="disabled" --}}
+            <x-jet-danger-button wire:click="save" wire:loading.class="bg-blue-500" wire:target="save">
                 Crear post
             </x-jet-danger-button>
+
+            {{-- wire.loading to put the display block property to this span
+                while it is loading --}}
+            {{-- wire.target to specify the process that we want to wait --}}
+            {{-- <span wire:loading wire:target="save">Cargando</span> --}}
         </x-slot>
     </x-jet-dialog-modal>
 </div>

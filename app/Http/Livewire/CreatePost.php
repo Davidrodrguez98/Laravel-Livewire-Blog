@@ -14,9 +14,10 @@ class CreatePost extends Component
 
     protected $rules = [
         'title' => 'required|max:10',
-        'content' => 'required|min:100'
+        'content' => 'required'
     ];
 
+    // Validation in real time
     public function updated($propertyName)
     {
         $this->validateOnly($propertyName);
