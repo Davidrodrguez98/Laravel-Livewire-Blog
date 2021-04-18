@@ -12,6 +12,10 @@ class ShowPosts extends Component
     public $sort = 'id';
     public $direction = 'desc';
 
+    // Listen events, when the event "render" (the first) is captured,
+    // the method "render" (the second) is executed
+    protected $listeners = ['render' => 'render'];
+
     public function render()
     {
         $posts = Post::where('title', 'like', '%' . $this->search . '%')
@@ -20,5 +24,24 @@ class ShowPosts extends Component
                 ->get();
 
         return view('livewire.show-posts', compact('posts'));
+    }
+
+    public function order($sort)
+    {
+        if($this->sort == $sort)
+        {
+            if($this->direction == 'desc')
+            {
+                $this->direction = 'asc';
+            }else
+            {
+                $this->direction = 'desc';
+            }
+        }else
+        {
+            $this->sort = $sort;
+            $this->direction = 'desc';
+        }
+        $this->sort = $sort;
     }
 }

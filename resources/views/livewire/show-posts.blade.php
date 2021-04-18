@@ -9,9 +9,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <x-table>
 
-            <div class="px-6" py-4>
+            <div class="px-6 py-4 flex items-center">
                 {{-- <input class="form-control" wire:model="search" type="text" name=""> --}}
-                <x-jet-input class="w-full" placeholder="Buscar" wire:model="search" type="text" />
+                <x-jet-input class="flex-1 mr-4" placeholder="Buscar" wire:model="search" type="text" />
+
+                @livewire('create-post')
             </div>
             @if ($posts->count())
 
@@ -19,15 +21,18 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('id')">
                                 ID
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('title')">
                                 Title
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="cursor-pointer px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                wire:click="order('content')">
                                 Content
                             </th>
                             <th scope="col" class="relative px-6 py-3">
@@ -61,9 +66,9 @@
                     </tbody>
                 </table>
             @else
-            <div class="px-6" py-4>
-                No existen blogs
-            </div>
+                <div class="px-6" py-4>
+                    No existen blogs
+                </div>
             @endif
 
         </x-table>
